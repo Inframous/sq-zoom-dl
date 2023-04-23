@@ -3,7 +3,7 @@ from pathlib import Path
 import os
 import time
 
-
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
@@ -84,7 +84,8 @@ def downloads_done(download_dir):
 
 def download_sq_clip(i):
     ## Downloading a single clip
-    S = Service("/usr/local/bin/chromedriver")
+    chrome_driver_path = ChromeDriverManager().install()
+    S = Service(chrome_driver_path)
     lesson_count = i['LessonNumber']
     url = i['Link']
     lesson_date = i['Date']
